@@ -10,7 +10,7 @@ class Second implements Runnable
 		this.x=x;
 	}
 	public void run(){
-		System.out.println("Second thread:Square of the number is"+ x*x);
+		System.out.println("Square of the number is"+ x*x);
 	}
 }
 
@@ -25,7 +25,7 @@ class Third implements Runnable
 	
 	public void run()
 	{
-		System.out.println("third thread:Cube of the number is"+ x*x*x);
+		System.out.println("Cube of the number is"+ x*x*x);
 	}
 }
 

@@ -7,9 +7,9 @@ public class FibbonacciMainClass {
 	{
 		 try
 	     {
-	          Fibonacci fib = new Fibonacci();
-	          fib.start();
-	          fib.sleep(4000);
+	          Fibonacci f = new Fibonacci();
+	          f.start();
+	          f.sleep(4000);
 	     }
 	     catch (Exception ex)
 	     {

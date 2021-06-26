@@ -8,22 +8,16 @@ class Fibonacci extends Thread
      {
           try
           {
-               int a=0, b=1, c=0;
-               Scanner sc = new Scanner(System.in);
-
-               System.out.print("Enter the Limit for fabonacci: ");
-
-               int n = sc.nextInt();
-               System.out.println("\n=================================");
-               System.out.println("Fibonacci series:");
-               while (n>0)
-               {
-                    System.out.print(c+" ");
-                    a=b;
-                    b=c;
-                    c=a+b;
-                    n=n-1;
-               }
+        	  int n1=0,n2=1,n3,i,count=10;    
+        	  System.out.print(n1+" "+n2);//printing 0 and 1    
+        	     
+        	  for(i=2;i<count;++i)//loop starts from 2 because 0 and 1 are already printed    
+        	  {    
+        	   n3=n1+n2;    
+        	   System.out.print(" "+n3);    
+        	   n1=n2;    
+        	   n2=n3;    
+        	  }    
           }
           catch (Exception ex)
           {
