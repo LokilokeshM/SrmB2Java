@@ -11,50 +11,33 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 public class JtableExample {
-	public static void main(String args[]) {
-		//rows of the table
-		final Object r[][] = {
-		{"Adam", "13" , "Doctor"},
-		{"Anna", "21" ,"Engineer"},
-		{"Annamu", "31" ,"Technician"},
-		{"Iza", "41" ,"Physician"},
-		{"Norah", "11" , "Author"},
-		{"Naashy", "12" ,"Artist"},
-		{"Poosa", "33" ,"Actor"},
-		{"Pichi", "14" ,"Author"},
-		{"Kunjol", "31" ,"Police"},
-		{"Thukidi", "12" ,"Doctor"},
-		{"Sam", "13" , "Engineer"},
-		{"Kukku", "24" ,"Technician"},
-		};
 
-		final Object h[] = {"Name", "Age" ,"Occupation"};
+		JFrame f;
 
-		JFrame fr = new JFrame(" Printing table");
-	
-		fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	
-		final JTable tb = new JTable(r, h);
-		
-		JScrollPane sp = new JScrollPane(tb);
-		fr.add(sp , BorderLayout.CENTER);
-		
-		JButton button = new JButton("click this button to Print");
-	
-		ActionListener act = new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-	
-		try {
-		tb.print();
-		} catch (PrinterException pe) {
-		System.err.println("Error printing: " + pe.getMessage());
-		}
-		}
-		};
-		button.addActionListener(act);
-		fr.add(button, BorderLayout.SOUTH);
+		JTable j;
 
-		fr.setSize(300, 150);
-		fr.setVisible(true);
+		JtableExample() {
+
+			f = new JFrame();
+
+			f.setTitle("Student");
+
+			String[][] data = { { "srinath", "4031", "Mca" }, { "Lokesh", "6014", "Msc" } };
+
+			String[] columnNames = { "Name", "Roll Number", "Department" };
+
+			j = new JTable(data, columnNames);
+			j.setBounds(30, 40, 200, 300);
+
+			JScrollPane sp = new JScrollPane(j);
+			f.add(sp);
+
+			f.setSize(500, 200);
+
+			f.setVisible(true);
 		}
-}
+
+		public static void main(String[] args) {
+			new JtableExample();
+		}
+	}

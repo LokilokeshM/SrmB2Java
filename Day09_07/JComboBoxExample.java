@@ -1,6 +1,8 @@
 package Day09_07;
 
-import java.awt.Color;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Label;
@@ -14,48 +16,68 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 public class JComboBoxExample {
-	 private static void createAndShowGUI() {
-		 
+	   private JFrame mainFrame;
+	   private JLabel headerLabel;
+	   private JLabel statusLabel;
+	   private JPanel controlPanel;
+
+	   public JComboBoxExample(){
+	      prepareGUI();
+	   }
+	   public static void main(String[] args){
+		   JComboBoxExample  swingControlDemo = new JComboBoxExample();      
+	      swingControlDemo.showComboboxDemo();
+	   }
+	   private void prepareGUI(){
+	      mainFrame = new JFrame("Java Swing Examples");
+	      mainFrame.setSize(400,400);
+	      mainFrame.setLayout(new GridLayout(3, 1));
 	      
-	        final JFrame frame = new JFrame("Split Pane Example");
-	 
-	     
-	        frame.setSize(500, 300);
-	        frame.setVisible(true);
-	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	 
-	      
-	        frame.getContentPane().setLayout(new GridLayout(1, 1));
-	 
-	        JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-	 
-	        tabbedPane.addTab("Java", makePanel("8am to 12pm"));
-	        tabbedPane.addTab("React", makePanel("2pm to 6pm"));
-	 
-	        frame.getContentPane().add(tabbedPane);
-	 
-	    }
-	 
-	    private static JPanel makePanel(String text) {
-	        JPanel p = new JPanel();
-	        p.add(new Label(text));
-	        p.setLayout(new GridLayout(1, 1));
-	        return p;
-	    }
-	 
-	    public static void main(String[] args) {
-	 
-	 
-	 
-	  javax.swing.SwingUtilities.invokeLater(new Runnable() {
-	 
-	public void run() {
-	 
-	    createAndShowGUI(); 
-	 
+	      mainFrame.addWindowListener(new WindowAdapter() {
+	         public void windowClosing(WindowEvent windowEvent){
+	            System.exit(0);
+	         }        
+	      });    
+	      headerLabel = new JLabel("", JLabel.CENTER);        
+	      statusLabel = new JLabel("",JLabel.CENTER);    
+	      statusLabel.setSize(350,100);
+
+	      controlPanel = new JPanel();
+	      controlPanel.setLayout(new FlowLayout());
+
+	      mainFrame.add(headerLabel);
+	      mainFrame.add(controlPanel);
+	      mainFrame.add(statusLabel);
+	      mainFrame.setVisible(true);  
+	   }
+	   private void showComboboxDemo(){                                    
+	      headerLabel.setText("Control in action: JComboBox"); 
+	      final DefaultComboBoxModel fruitsName = new DefaultComboBoxModel();
+
+	      fruitsName.addElement("Apple");
+	      fruitsName.addElement("Grapes");
+	      fruitsName.addElement("Mango");
+	      fruitsName.addElement("Peer");
+
+	      final JComboBox fruitCombo = new JComboBox(fruitsName);    
+	      fruitCombo.setSelectedIndex(0);
+
+	      JScrollPane fruitListScrollPane = new JScrollPane(fruitCombo);    
+	      JButton showButton = new JButton("Show");
+
+	      showButton.addActionListener(new ActionListener() {
+	         public void actionPerformed(ActionEvent e) { 
+	            String data = "";
+	            if (fruitCombo.getSelectedIndex() != -1) {                     
+	               data = "Fruits Selected: " 
+	                  + fruitCombo.getItemAt
+	                  (fruitCombo.getSelectedIndex());             
+	            }              
+	            statusLabel.setText(data);
+	         }
+	      }); 
+	      controlPanel.add(fruitListScrollPane);          
+	      controlPanel.add(showButton);    
+	      mainFrame.setVisible(true);             
+	   }
 	}
-	 
-	  });
-	    }
-	 
-}
